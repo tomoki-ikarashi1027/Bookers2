@@ -1,0 +1,17 @@
+<h2>Book detail</h2>
+<% @books.each do |book| %>
+<table class="table">
+	<tbody>
+		<tr>
+			<td><a href="/users/"></a></td>
+			<td><a href="/books"></a></td>
+
+	<td><%= link_to 'Edit'edit_book_path(@book) %></td>
+	<% if@book.user == current_user %>
+	<td><%= link_to 'Destroy' book_path(@book),method: :delete,
+	date:{confilm: "本当に消しますか？"} %></td>
+<% end %>
+</tr>
+</tbody>
+</table>
+<% end %>
