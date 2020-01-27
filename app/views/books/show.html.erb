@@ -1,17 +1,31 @@
-<h2>Book detail</h2>
-<% @books.each do |book| %>
-<table class="table">
-	<tbody>
-		<tr>
-			<td><a href="/users/"></a></td>
-			<td><a href="/books"></a></td>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+		<%= render 'users/list',{user: @book.user,book: @new_book} %>
+		</div>
+		<div class="col-xs-9">
+		<h2>Book detail</h2>
 
-	<td><%= link_to 'Edit'edit_book_path(@book) %></td>
-	<% if@book.user == current_user %>
-	<td><%= link_to 'Destroy' book_path(@book),method: :delete,
-	date:{confilm: "本当に消しますか？"} %></td>
-<% end %>
-</tr>
-</tbody>
-</table>
-<% end %>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td> <%= attachment_image_tag @book.user, :profile_image,:fill,60,60,fallback: "no_image.jpeg" %><br>
+					<%= link_to @book.user.name,user_path(@book.user) %></td>
+					<td><%= @book.title %></td>
+					<td><%= @book.body %></td>
+
+			<% if@book.user == current_user %>
+			<td><%= link_to 'Edit',edit_book_path(@book), data: {"turbolinks" => false} %></td>
+			<% if@book.user == current_user %>
+			<td><%= link_to 'Destroy', book_path(@book),method: :delete,
+			date:{confilm: "本当に消しますか？"} %></td>
+		 <% end %>
+		 <% end %>
+		</tr>
+		</tbody>
+		</table>
+		</div>
+	</div>
+
+
+</div>
